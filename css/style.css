@@ -106,6 +106,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   word-break: break-word;
   -webkit-font-smoothing: antialiased;
+  background: rgb(203,100,253);
+  background: -moz-radial-gradient(circle, rgba(203,100,253,1) 0%, rgba(115,43,164,1) 40%, rgba(92,28,141,1) 64%, rgba(49,0,98,1) 100%);
+  background: -webkit-radial-gradient(circle, rgba(203,100,253,1) 0%, rgba(115,43,164,1) 40%, rgba(92,28,141,1) 64%, rgba(49,0,98,1) 100%);
+  background: radial-gradient(circle, rgba(203,100,253,1) 0%, rgba(115,43,164,1) 40%, rgba(92,28,141,1) 64%, rgba(49,0,98,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cb64fd",endColorstr="#310062",GradientType=1);
+  background-attachment: fixed;
 }
 section {
   padding-top: 110px;
@@ -142,6 +148,7 @@ a:hover {
 }
 p {
   margin-bottom: 25px;
+  color: var(--very-light-gray)!important;
 }
 .last-paragraph-no-margin p:last-of-type {
   margin-bottom: 0;
@@ -7631,23 +7638,23 @@ header.sticky .navbar.disable-fixed {
 }
 /* Header light */
 .header-light .navbar-nav .nav-link {
-  color: var(--dark-gray);
+  color: var(--white);
 }
 .header-light .header-icon .icon > a {
-  color: var(--dark-gray);
+  color: var(--white);
 }
 .header-light .header-icon .icon > a:hover {
-  color: var(--dark-gray);
+  color: var(--white);
   opacity: 0.6;
 }
 .header-light .header-icon .icon .push-button span {
-  background-color: var(--dark-gray);
+  background-color: var(--white);
 }
 .header-light .header-icon .icon .header-language > a, .header-light .header-icon .icon .header-cart > a {
-  color: var(--dark-gray);
+  color: var(--white);
 }
 .header-light .header-icon .icon .header-language > a:hover, .header-light .header-icon .icon .header-cart > a:hover {
-  color: var(--dark-gray);
+  color: var(--white);
   opacity: 0.6;
 }
 .header-light .menu-item-list .nav-link {
@@ -19231,4 +19238,11 @@ footer .footer-navbar .nav-item:last-child a {
 }
 .footer-demo img {
   max-height: 55px !important;
+}
+.tbg {
+	background: rgb(255,255,255);
+background: -moz-linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 100%);
+background: -webkit-linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 100%);
+background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#ffffff",GradientType=1);
 }
