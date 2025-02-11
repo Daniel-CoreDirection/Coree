@@ -6911,7 +6911,11 @@ header.sticky.sticky-active [data-header-hover=dark] .header-language-icon .head
   opacity: 1;
 }
 header.sticky.sticky-active [data-header-hover=light] {
-  background-color: var(--white) !important;
+  	background: rgb(255,255,255);
+background: -moz-linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 100%);
+background: -webkit-linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 100%);
+background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#ffffff",GradientType=1);
   box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.1);
 }
 header.sticky.sticky-active [data-header-hover=light] .navbar-nav .nav-link {

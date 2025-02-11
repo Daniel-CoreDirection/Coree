@@ -60,7 +60,11 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#cb64fd",endCo
     background-color: #585d72;
 }
 .bg-black-pearl-blue {
-    background-color: #232530;
+    background: rgb(62,31,80);
+	background: -moz-linear-gradient(135deg, rgba(62,31,80,1) 0%, rgba(31,33,42,1) 100%);
+	background: -webkit-linear-gradient(135deg, rgba(62,31,80,1) 0%, rgba(31,33,42,1) 100%);
+	background: linear-gradient(135deg, rgba(62,31,80,1) 0%, rgba(31,33,42,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#3e1f50",endColorstr="#1f212a",GradientType=1);
 }
 .bg-black-pearl-blue-dark {
     background-color: #1f212a;
