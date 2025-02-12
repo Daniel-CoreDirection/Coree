@@ -13337,7 +13337,7 @@ canvas {
   color: var(--medium-gray);
 }
 .pricing-table-style-07 .nav-tabs .nav-item .nav-link .icon {
-  border-color: rgba(23, 23, 23, 0.2) !important;
+  border-color: #fff;
 }
 .pricing-table-style-07 .nav-tabs .nav-item .nav-link .icon i {
   opacity: 0;
