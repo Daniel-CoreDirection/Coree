@@ -586,6 +586,9 @@ b, strong {
 .vh-75 {
 	height: 75vh!important;
 }
+.border-radius-15px {
+	border-radius: 15px!important;
+}
 /* Text color */
 .text-white, .btn-link.text-white, a.text-white-hover:hover {
   color: var(--white);
