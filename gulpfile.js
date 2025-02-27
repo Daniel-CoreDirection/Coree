@@ -1,104 +1,36 @@
-// Variable
-var {src, dest, ...gulp} = require('gulp'),
-    browserSync = require('browser-sync').create(),
-    concat = require('gulp-concat'),
-    uglify = require('gulp-uglify'),
-    minifyCSS = require('gulp-minify-css'),
-    sourcemaps = require('gulp-sourcemaps'),
-    sass = require('gulp-sass')(require('sass'));
-    header = require('gulp-header');
- 
+const { src, dest, watch, series } = require('gulp');
+const cleanCSS = require('gulp-clean-css');
+const uglify = require('gulp-uglify');
+const rename = require('gulp-rename');
 
-// Gulp-SAAS
-gulp.task('sass', function() {
-  return src(['sass/style.scss'])
-    .pipe(sourcemaps.init())
-    .pipe(sass())
-    .pipe(dest('css')) // concatinated css file
-    .pipe(concat('style.min.css')) // concatinated css file sass/style.scss
-    .pipe(minifyCSS({processImport: false}))
-    .pipe(sourcemaps.write('.'))
-    .pipe(dest('css')) // minified css file css/style.min.css
-    .pipe(browserSync.reload({
-      stream: true // watched by BrowserSync
-    }))
-});
+// Paths
+const paths = {
+    css: 'css/**/*.css',
+    js: 'js/**/*.js'
+};
 
-gulp.task('responsive', function(){
-  return src(['sass/responsive.scss'])
-    .pipe(sourcemaps.init())
-    .pipe(sass())
-    .pipe(dest('css')) // concatinated css file
-    .pipe(concat('responsive.min.css')) // concatinated css file sass/style.scss
-    .pipe(minifyCSS({processImport: false}))
-    .pipe(sourcemaps.write('.'))
-    .pipe(dest('css')) // minified css file css/style.min.css
-    .pipe(browserSync.reload({
-      stream: true // watched by BrowserSync
-    }))
-});
+// Minify CSS
+function minifyCSS() {
+    return src(paths.css)
+        .pipe(cleanCSS({ compatibility: 'ie8' }))
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(dest('css')); // Output to the same folder
+}
 
-gulp.task('icon', function(){
-  return src('sass/icon/icon.scss')
-    .pipe(sourcemaps.init())
-    .pipe(sass())
-    .pipe(dest('css')) // concatinated css file
-    .pipe(concat('icon.min.css')) // concatinated css file sass/style.scss
-    .pipe(minifyCSS({processImport: false}))
-    .pipe(sourcemaps.write('.'))
-    .pipe(dest('css')) // minified css file css/style.min.css
-    .pipe(browserSync.reload({
-      stream: true // watched by BrowserSync
-    }))
-});
+// Minify JS
+function minifyJS() {
+    return src(paths.js)
+        .pipe(uglify())
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(dest('js')); // Output to the same folder
+}
 
-gulp.task('vendors', function(){
-  return src('sass/vendors/**/*.scss')
-    .pipe(sourcemaps.init())
-    .pipe(sass())
-    .pipe(dest('css')) // concatinated css file
-    .pipe(concat('vendors.min.css')) // concatinated css file sass/style.scss
-    .pipe(minifyCSS({processImport: false}))
-    .pipe(sourcemaps.write('.'))
-    .pipe(dest('css')) // minified css file css/style.min.css
-    .pipe(browserSync.reload({
-      stream: true // watched by BrowserSync
-    }))
-});
+// Watch files for changes
+function watchFiles() {
+    watch(paths.css, minifyCSS);
+    watch(paths.js, minifyJS);
+}
 
-// Gulp-concat & gulp-uglify 
-gulp.task('concat-vendors', function () {
-  src([
-    'js/vendors/*.js'
-  ])
-   .pipe(concat('vendors.js')) // concatinated js file
-   .pipe(dest('js')); // js/vendors.js
-
-  src([
-    'js/vendors/*.js'
-  ])
-   .pipe(concat('vendors.min.js'))
-   .pipe(uglify({ output: { comments: /^!/ } })) // minified js file js/vendors.min.js 
-   .pipe(dest('js')); // js/vendors.min.js
-});
-
-// Browser sync
-gulp.task('browserSync', function(){
-  browserSync.init({ 
-    watchTask: true,
-    online: true,
-    server: {
-      baseDir: './'
-    }
-  });
-});
-
-// Gulp watch
-gulp.task('default', gulp.parallel('browserSync','sass','icon','vendors','concat-vendors','responsive', function (done){
-  gulp.watch('sass/**/*.scss').on('change', gulp.series('sass'));
-  gulp.watch('sass/icon/*.scss').on('change', gulp.series('icon'));
-  gulp.watch('sass/vendors/**/*.scss').on('change', gulp.series('vendors'));
-  gulp.watch('js/vendors/*.js').on('change', gulp.series('concat-vendors'));
-  gulp.watch(['sass/theme-responsive/**/*.scss', 'sass/responsive.scss']).on('change', gulp.series('responsive'));
-  done()
-}))
+// Default task
+exports.default = series(minifyCSS, minifyJS);
+exports.watch = watchFiles;
