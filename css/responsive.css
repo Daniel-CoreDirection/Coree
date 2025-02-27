@@ -19738,7 +19738,6 @@
     display: none;
   }
   .navbar.bg-transparent, .navbar-modern-inner.bg-transparent, .navbar-full-screen-menu-inner.bg-transparent {
-    background-color: var(--white) !important;
   }
   .navbar .navbar-collapse.show, .navbar-modern-inner .navbar-collapse.show, .navbar-full-screen-menu-inner .navbar-collapse.show {
     overflow-y: auto !important;
